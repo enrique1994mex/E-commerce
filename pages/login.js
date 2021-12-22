@@ -15,7 +15,7 @@ export default function Login() {
             const {data} = await axios.post('/api/users/login', {email, password});
             alert('Success login'); 
         } catch (error) {
-            alert(error.message); 
+            alert(error.response.data? error.response.data.message : error.message); 
         }
     }
     return (
