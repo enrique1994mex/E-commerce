@@ -6,8 +6,10 @@ import NextLink from 'next/link';
 import {Grid, Typography, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Link, Select, MenuItem, Button, Card, List, ListItem} from '@mui/material';
 import Image from 'next/image';  
 import axios from 'axios'; 
+import { useRouter } from 'next/router'; 
 
 function CartScreen() {
+    const router = useRouter(); 
     const {state, dispatch} = useContext(Store); 
     const {cart: {cartItems},} = state; 
     const updateCartHandler = async (item, quantity) => {
@@ -20,6 +22,9 @@ function CartScreen() {
     }
     const removeItemHandler = (item) => {
         dispatch({type: 'CART_REMOVE_ITEM', payload: item}) 
+    }
+    const checkoutHandler = () => {
+        router.push('/shipping'); 
     }
     return (
         <Layout title="Shopping Cart"> 
@@ -92,7 +97,7 @@ function CartScreen() {
                                     </Typography>
                                 </ListItem>
                                 <ListItem>
-                                    <Button variant="contained" color="primary" fullWidth>Check Out</Button>
+                                    <Button onClick={checkoutHandler} variant="contained" color="primary" fullWidth>Check Out</Button>
                                 </ListItem>
                             </List>
                         </Card>
