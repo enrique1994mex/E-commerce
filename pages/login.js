@@ -1,22 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Typography, List, TextField, ListItem, Button, Link } from '@mui/material';
+import axios from 'axios'; 
 import Layout from '../components/Layout'; 
 import useStyles from '../utils/styles';
 import NextLink from 'next/link';  
 
 export default function Login() {
-    const classes = useStyles()
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState(''); 
+    const classes = useStyles();
+    const submitHandler = async (e) => {
+        e.preventDefault(); 
+        try {
+            const {data} = await axios.post('/api/users/login', {email, password});
+            alert('Success login'); 
+        } catch (error) {
+            alert(error.message); 
+        }
+    }
     return (
         <Layout title="Login">
-            <form className={classes.form}>
+            <form onSubmit={submitHandler} className={classes.form}>
                 <Typography component="h1" variant="h1">Login</Typography>
                 <List>
                     <ListItem>
-                        <TextField variant="outlined" fullWidth id="email" label="Email" inputProps={{ type: 'email' }}>
+                        <TextField variant="outlined" fullWidth id="email" label="Email" inputProps={{ type: 'email' }}
+                        onChange={e => setEmail(e.target.value)}>
                         </TextField>
                     </ListItem>
                     <ListItem>
-                        <TextField variant="outlined" fullWidth id="password" label="Password" inputProps={{ type: 'password' }}>
+                        <TextField variant="outlined" fullWidth id="password" label="Password" inputProps={{ type: 'password' }}
+                        onChange={e => setPassword(e.target.value)}>
                         </TextField>
                     </ListItem>
                     <ListItem>
