@@ -7,7 +7,7 @@ export default function Shipping() {
     const {state, dispatch} = useContext(Store);
     const {userInfo} = state;
     if(!userInfo) {
-        () => router.push('/login?redirect=/shipping'); 
+        router.push('/login?redirect=/shipping'); 
     }
     return(
         <div>Shipping</div> 

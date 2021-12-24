@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { Typography, List, TextField, ListItem, Button, Link } from '@mui/material';
 import axios from 'axios'; 
 import Layout from '../components/Layout'; 
@@ -13,18 +13,21 @@ export default function Login() {
     const {redirect} = router.query; // 
     const {state, dispatch} = useContext(Store);
     const {userInfo} = state;
-    if(userInfo) {
-        () => router.push('/'); 
-    }
+    useEffect( () => {
+        if(userInfo) {
+            router.push('/'); 
+        }
+    }, []);
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
     const classes = useStyles();
     const submitHandler = async (e) => {
         e.preventDefault(); 
         try {
-            const {data} = await axios.post('/api/users/login', {email, password});
-            dispatch({type:'USER_LOGIN', payload: data});
-            Cookies.set('userInfo', data); 
+            const {data} = await axios.post('/api/users/login', {email, password,});
+            dispatch({type: 'USER_LOGIN', payload: data});
+            Cookies.set('userInfo', JSON.stringify(data)); 
             router.push(redirect || '/'); 
         } catch (error) {
             alert(error.response.data? error.response.data.message : error.message); 
@@ -49,7 +52,7 @@ export default function Login() {
                         <Button variant="contained" type="submit" fullWidth color="primary">Login</Button>
                     </ListItem>
                     <ListItem>
-                        Don't have an account? &nbsp; <NextLink href="/register" passHref><Link>Register</Link></NextLink>
+                        Don't have an account? &nbsp; <NextLink href={`/register?redirect=${redirect || '/'}`} passHref><Link>Register</Link></NextLink>
                     </ListItem>
                 </List>
             </form>

@@ -8,8 +8,8 @@ export default class MyDocument extends Document {
             <Html lang="en">
                 <Head></Head>
                 <body>
-                    <Main></Main>
-                    <NextScript></NextScript>
+                    <Main />
+                    <NextScript />
                 </body>
             </Html>
         )
@@ -18,8 +18,8 @@ export default class MyDocument extends Document {
 
 MyDocument.getInitialProps = async (ctx) => {
     const sheets = new ServerStyleSheets(); 
-    const originalRenderPage = ctx.originalRenderPage;
-    ctx.originalRenderPage = () => {
+    const originalRenderPage = ctx.renderPage; 
+    ctx.renderPage = () => {
         return originalRenderPage({
             enhanceApp: (App) => (props) => sheets.collect(<App {...props} />)
         });
