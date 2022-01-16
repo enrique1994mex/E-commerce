@@ -8,7 +8,7 @@ import Image from 'next/image';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import useStyles from '../utils/styles';
-import CheckoutWizard from '../components/CheckoutWizard.js'; 
+import CheckoutWizard from '../components/checkoutWizard.js'; 
 import { useSnackbar } from 'notistack';
 import {getError} from '../utils/error'; 
 import Cookies from 'js-cookie';
