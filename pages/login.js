@@ -54,7 +54,8 @@ export default function Login() {
                             }}
                             render={({ field }) => <TextField
                                 variant="outlined"
-                                fullWidth id="email"
+                                fullWidth 
+                                id="email"
                                 label="Email"
                                 inputProps={{ type: 'email' }}
                                 error={Boolean(errors.email)}
