@@ -3,7 +3,7 @@ import {Store} from '../utils/Store';
 import Cookies from 'js-cookie'; 
 import { useRouter } from 'next/router'; 
 import Layout from '../components/Layout'; 
-import CheckoutWizard from '../components/CheckoutWizard'; 
+import CheckoutWizard from '../components/CheckoutWizard.js'; 
 import useStyles from '../utils/styles';
 import { Typography, List, ListItem, FormControl, RadioGroup, FormControlLabel, Radio, Button } from '@mui/material';
 import {useSnackbar} from 'notistack'; 
