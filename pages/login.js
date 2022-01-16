@@ -18,11 +18,12 @@ export default function Login() {
     const { redirect } = router.query; // 
     const { state, dispatch } = useContext(Store);
     const { userInfo } = state;
+
     useEffect(() => {
         if (userInfo) {
-            router.push('/');
+            router.push("/");
         }
-    }, []);
+    }, [userInfo, router]);
 
     const classes = useStyles();
 
