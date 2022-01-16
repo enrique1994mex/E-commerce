@@ -92,7 +92,7 @@ export default function Login() {
                         <Button variant="contained" type="submit" fullWidth color="primary">Login</Button>
                     </ListItem>
                     <ListItem>
-                        Don't have an account? &nbsp; <NextLink href={`/register?redirect=${redirect || '/'}`} passHref><Link>Register</Link></NextLink>
+                        Don&#39;t have an account? &nbsp; <NextLink href={`/register?redirect=${redirect || '/'}`} passHref><Link>Register</Link></NextLink>
                     </ListItem>
                 </List>
             </form>
